@@ -1,0 +1,198 @@
+{
+  "VehicleSdk": {
+    "name": "ServiceClient2",
+    "package": "com.etas.e2e.tools.client",
+    "host": {
+      "hostname": "",
+      "port": 55555,
+      "tls": false,
+      "auth": null
+    },
+    "apis": [
+      {
+        "name": "GetSpeedBos",
+        "parameter": [],
+        "flow": [
+          {
+            "service": "VehicleService",
+            "rpc": "GetSpeed",
+            "parameter": [],
+            "responsemap": "SpeedResponse"
+          }
+        ],
+        "response": {
+          "type": "double",
+          "description": "Current speed of the vehicle.",
+          "return": "SpeedResponse.speed"
+        }
+      },
+      {
+        "name": "GetSpeedVoid1",
+        "parameter": [],
+        "flow": [
+          {
+            "service": "VehicleService",
+            "rpc": "GetSpeed",
+            "parameter": [],
+            "responsemap": "SpeedResponse"
+          }
+        ],
+        "response": {
+          "type": "void",
+          "return": null
+        }
+      },
+      {
+        "name": "GetSpeedVoid2",
+        "parameter": [],
+        "flow": [
+          {
+            "service": "VehicleService",
+            "rpc": "GetSpeed",
+            "parameter": [],
+            "responsemap": "SpeedResponse"
+          }
+        ],
+        "response": {
+          "type": "void",
+          "return": "SpeedResponse.speed"
+        }
+      },
+      {
+        "name": "SetSeatPositionBos",
+        "parameter": [
+          {
+            "name": "position",
+            "type": "int32",
+            "value": -1,
+            "description": "Seat position to set."
+          },
+          {
+            "name": "status",
+            "type": "string",
+            "value": "",
+            "description": "Status of the seat position."
+          }
+        ],
+        "flow": [
+          {
+            "service": "VehicleService",
+            "rpc": "SetSeatPosition",
+            "parameter": [
+              "input.position",
+              "input.status"
+            ],
+            "responsemap": "SetSeatPositionResponse"
+          },
+          {
+            "service": "VehicleServiceTwo",
+            "rpc": "SetSeatPositionTwo",
+            "parameter": [
+              "input.position",
+              "input.status"
+            ],
+            "responsemap": "SetSeatPositionTwoResponse"
+          }
+        ],
+        "response": {
+          "type": "bool",
+          "return": "SetSeatPositionTwoResponse.success"
+        }
+      }
+    ]
+  },
+  "ServiceDsl": {
+    "services": [
+      {
+        "name": "VehicleService",
+        "rpcs": [
+          {
+            "name": "GetSpeed",
+            "request": {
+              "name": "GetSpeedRequest",
+              "parameter": []
+            },
+            "response": {
+              "name": "GetSpeedResponse",
+              "parameter": [
+                {
+                  "name": "speed",
+                  "type": "double",
+                  "value": -1,
+                  "description": "Current speed of the vehicle."
+                }
+              ]
+            }
+          },
+          {
+            "name": "SetSeatPosition",
+            "request": {
+              "name": "SetSeatPositionRequest",
+              "parameter": [
+                {
+                  "name": "position",
+                  "type": "int32",
+                  "value": 1,
+                  "description": "Desired seat position."
+                },
+                {
+                  "name": "status",
+                  "type": "string",
+                  "value": "active",
+                  "description": "Seat position status."
+                }
+              ]
+            },
+            "response": {
+              "name": "SetSeatPositionResponse",
+              "parameter": [
+                {
+                  "name": "success",
+                  "type": "bool",
+                  "value": -1,
+                  "description": "Indicates if the seat position was set successfully."
+                }
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "VehicleServiceTwo",
+        "rpcs": [
+          {
+            "name": "SetSeatPositionTwo",
+            "request": {
+              "name": "SetSeatPositionTwoRequest",
+              "parameter": [
+                {
+                  "name": "position",
+                  "type": "int32",
+                  "value": 1,
+                  "description": "Desired seat position for service two."
+                },
+                {
+                  "name": "status",
+                  "type": "string",
+                  "value": "active",
+                  "description": "Seat position status for service two."
+                }
+              ]
+            },
+            "response": {
+              "name": "SetSeatPositionTwoResponse",
+              "parameter": [
+                {
+                  "name": "success",
+                  "type": "bool",
+                  "value": -1,
+                  "description": "Indicates if the second seat position was set successfully."
+                }
+              ]
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

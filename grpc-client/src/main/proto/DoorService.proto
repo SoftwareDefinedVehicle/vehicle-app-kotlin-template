@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package com.etas.e2e.tools.client;
+
+option java_outer_classname = "DoorServiceOuterClass";
+
+message OpenDoorRequest {
+  float Speed = 1;
+}
+
+message OpenDoorResponse {
+  int64 duration = 1;
+}
+
+service DoorService {
+  rpc OpenDoor(OpenDoorRequest) returns (OpenDoorResponse);
+}

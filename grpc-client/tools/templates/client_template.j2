@@ -1,0 +1,77 @@
+package {{ package_name }};
+
+import io.grpc.ManagedChannel;
+import io.grpc.ManagedChannelBuilder;
+{% for service in services -%}
+
+import {{ package_name }}.{{ service.name }}Grpc.{{ service.name }}BlockingStub;
+{% for rpc in service.rpcs -%}
+import {{ package_name }}.{{ service.name }}OuterClass.{{ rpc.request.name }};
+import {{ package_name }}.{{ service.name }}OuterClass.{{ rpc.response.name }};
+{% endfor %}
+{% endfor %}
+
+public class {{ sdk_info.name }} {
+
+    private final ManagedChannel channel;
+    {% for service in services -%}
+    private final {{ service.name }}BlockingStub Byd{{ service.name }};
+    {% endfor %}
+
+    // Constructor using the default hostname and port from the JSON
+    public {{ sdk_info.name }}() {
+        this("{{ hostname }}", {{ port }});
+    }
+
+    public {{ sdk_info.name }}(String host, int port) {
+        this.channel = ManagedChannelBuilder.forAddress(host, port).usePlaintext().build();
+        {% for service in services -%}
+        this.Byd{{ service.name }} = {{ service.name }}Grpc.newBlockingStub(channel);
+        {% endfor %}
+    }
+
+    {% for api in sdk_info.apis %}
+    {% if api.name not in generated_methods %}
+    /**
+     * {{ api.name }} method
+     {% for param in api.parameter -%}
+     * @param {{ param.name }} {{ param.description }}
+     {% endfor -%}
+     {% if api.response.type != 'void' -%}
+     * @return {{ api.response.type }}  - It returns {{ api.response.description }}
+     {% endif -%}
+     */
+    public {{ api.response.type }} {{ api.name|lower_first }}({% for param in api.parameter %}{{ param.type }} {{ param.name }}{% if not loop.last %}, {% endif %}{% endfor %}) {
+        {% for step in api.flow -%}
+        
+        {{ step.rpc }}Request {{ step.request_var }} = {{ step.rpc }}Request.newBuilder()
+            {% for param in step.parameters -%}
+            .set{{ param.param_name|upper_first }}({{ param.param_mapped }})
+            {% endfor -%}
+            .build();
+        {{ step.rpc }}Response {{ step.response_var }} = Byd{{ step.service }}.{{ step.rpc|lower_first }}({{ step.request_var }});
+        {% endfor -%}
+        
+        {% if api.response.type != 'void' -%}
+        return {{ api.flow[-1].response_var }}.get{{ api.response.return.split(".")[-1]|capitalize }}();  // Return value from the last response
+        {% else -%}
+        {% if api.response.return is not none -%}
+        // Perform an action based on the response, even though it's void
+        {{ api.flow[-1].response_var }}.get{{ api.response.return.split(".")[-1]|capitalize }}(); 
+        return;  // Explicitly returning null for void type with non-null return
+        {% else -%}
+        // No return for pure void type with null return
+        {% endif -%}
+        {% endif -%}
+    }
+    {% endif -%}
+    {% endfor %}
+
+    public void connect() {
+        channel.getState(true);
+    }
+
+    public void shutdown() {
+        channel.shutdown();
+    }
+}

@@ -1,0 +1,593 @@
+{
+  "VehicleSdk": {
+    "name": "ServiceClient3",
+    "package": "com.etas.e2e.tools.client",
+    "host": {
+      "hostname": "127.0.0.1",
+      "port": 55555,
+      "tls": false,
+      "auth": null
+    },
+    "apis": [
+      {
+        "name": "SetVoiceCtrlExtMirrorFold4C1Bos",
+        "description": "",
+        "parameter": [
+          {
+            "name": "action",
+            "type": "int32",
+            "value": 1,
+            "description": "Desired rear view mirror voice control action."
+          }
+        ],
+        "flow": [
+          {
+            "service": "VehicleService",
+            "rpc": "SetVoiceCtrlExtMirrorFold4C1",
+            "parameter": [
+              "input.action"
+            ],
+            "responsemap": "response"
+          }
+        ],
+        "response": {
+          "type": "bool",
+          "return": "response.success"
+        }
+      },
+      {
+        "name": "GetRearViewMirrorFoldedUnfoldBos",
+        "description": "",
+        "parameter": [],
+        "flow": [
+          {
+            "service": "VehicleService",
+            "rpc": "GetRearViewMirrorFoldedUnfold",
+            "parameter": [],
+            "responsemap": "response"
+          }
+        ],
+        "response": {
+          "type": "int32",
+          "return": "response.foldstatus"
+        }
+      },
+      {
+        "name": "GetFldigExtrrMrorsExpandBos",
+        "description": "",
+        "parameter": [],
+        "flow": [
+          {
+            "service": "VehicleService",
+            "rpc": "GetFldigExtrrMrorsExpand",
+            "parameter": [],
+            "responsemap": "response"
+          }
+        ],
+        "response": {
+          "type": "int32",
+          "return": "response.expandstatus"
+        }
+      },
+      {
+        "name": "GetSpeedBos",
+        "description": "",
+        "parameter": [],
+        "flow": [
+          {
+            "service": "VehicleService",
+            "rpc": "GetSpeed",
+            "parameter": [],
+            "responsemap": "response"
+          }
+        ],
+        "response": {
+          "type": "double",
+          "return": "response.speed"
+        }
+      },
+      {
+        "name": "SetRightSideSlowChargingPADSwitchSignalSBos",
+        "description": "",
+        "parameter": [
+          {
+            "name": "signal",
+            "type": "int32",
+            "value": 1,
+            "description": "Desired Right Side Slow Charging PAD Switch Signal."
+          }
+        ],
+        "flow": [
+          {
+            "service": "VehicleService",
+            "rpc": "SetRightSideSlowChargingPADSwitchSignalS",
+            "parameter": [
+              "input.signal"
+            ],
+            "responsemap": "response"
+          }
+        ],
+        "response": {
+          "type": "bool",
+          "return": "response.success"
+        }
+      },
+      {
+        "name": "SetPADSwitchSignalOfTheLeftChargingBos",
+        "description": "",
+        "parameter": [
+          {
+            "name": "signal",
+            "type": "int32",
+            "value": 1,
+            "description": "Desired left Side Charging PAD Switch Signal."
+          }
+        ],
+        "flow": [
+          {
+            "service": "VehicleService",
+            "rpc": "SetPADSwitchSignalOfTheLeftCharging",
+            "parameter": [
+              "input.signal"
+            ],
+            "responsemap": "response"
+          }
+        ],
+        "response": {
+          "type": "bool",
+          "return": "response.success"
+        }
+      },
+      {
+        "name": "GetChargingRightElectricFlapStateBos",
+        "description": "",
+        "parameter": [],
+        "flow": [
+          {
+            "service": "VehicleService",
+            "rpc": "GetChargingRightElectricFlapState",
+            "parameter": [],
+            "responsemap": "response"
+          }
+        ],
+        "response": {
+          "type": "int32",
+          "return": "response.state"
+        }
+      },
+      {
+        "name": "GetSunShadePosPerc41ABos",
+        "description": "",
+        "parameter": [],
+        "flow": [
+          {
+            "service": "VehicleService",
+            "rpc": "GetSunShadePosPerc41A",
+            "parameter": [],
+            "responsemap": "response"
+          }
+        ],
+        "response": {
+          "type": "int32",
+          "return": "response.percentage"
+        }
+      },
+      {
+        "name": "GetSunsdCurrentActStatsBos",
+        "description": "",
+        "parameter": [],
+        "flow": [
+          {
+            "service": "VehicleService",
+            "rpc": "GetSunsdCurrentActStats",
+            "parameter": [],
+            "responsemap": "response"
+          }
+        ],
+        "response": {
+          "type": "int32",
+          "return": "response.action"
+        }
+      },
+      {
+        "name": "GetSunshadePositionFeedBos",
+        "description": "",
+        "parameter": [],
+        "flow": [
+          {
+            "service": "VehicleService",
+            "rpc": "GetSunshadePositionFeed",
+            "parameter": [],
+            "responsemap": "response"
+          }
+        ],
+        "response": {
+          "type": "int32",
+          "return": "response.positionfeed"
+        }
+      },
+      {
+        "name": "GetFrontShadeThermalProtectionStatBos",
+        "description": "",
+        "parameter": [],
+        "flow": [
+          {
+            "service": "VehicleService",
+            "rpc": "GetFrontShadeThermalProtectionStat",
+            "parameter": [],
+            "responsemap": "response"
+          }
+        ],
+        "response": {
+          "type": "int32",
+          "return": "response.tpstat"
+        }
+      },
+      {
+        "name": "GetSunshadeIsNotInitializBos",
+        "description": "",
+        "parameter": [],
+        "flow": [
+          {
+            "service": "VehicleService",
+            "rpc": "GetSunshadeIsNotInitializ",
+            "parameter": [],
+            "responsemap": "response"
+          }
+        ],
+        "response": {
+          "type": "int32",
+          "return": "response.initstatus"
+        }
+      },
+      {
+        "name": "SetShadeVoiCtrlInstrctBos",
+        "description": "",
+        "parameter": [
+          {
+            "name": "mode",
+            "type": "int32",
+            "value": 1,
+            "description": "Desired switch mode."
+          }
+        ],
+        "flow": [
+          {
+            "service": "VehicleService",
+            "rpc": "SetShadeVoiCtrlInstrct",
+            "parameter": [
+              "input.mode"
+            ],
+            "responsemap": "response"
+          }
+        ],
+        "response": {
+          "type": "bool",
+          "return": "response.success"
+        }
+      },
+      {
+        "name": "SetSunShadePosPerc4F5Bos",
+        "description": "",
+        "parameter": [
+          {
+            "name": "percentage",
+            "type": "int32",
+            "value": 1,
+            "description": "Desired sunshade open percentage."
+          }
+        ],
+        "flow": [
+          {
+            "service": "VehicleService",
+            "rpc": "SetSunShadePosPerc4F5",
+            "parameter": [
+              "input.percentage"
+            ],
+            "responsemap": "response"
+          }
+        ],
+        "response": {
+          "type": "bool",
+          "return": "response.success"
+        }
+      }
+    ]
+  },
+  "ServiceDsl": {
+    "services": [
+      {
+        "name": "VehicleService",
+        "rpcs": [
+          {
+            "name": "SetVoiceCtrlExtMirrorFold4C1",
+            "request": {
+              "name": "SetVoiceCtrlExtMirrorFold4C1Request",
+              "parameter": [
+                {
+                  "name": "action",
+                  "type": "int32",
+                  "value": 1,
+                  "description": "Desired rear view mirror voice control action."
+                }
+              ]
+            },
+            "response": {
+              "name": "SetVoiceCtrlExtMirrorFold4C1Response",
+              "parameter": [
+                {
+                  "name": "success",
+                  "type": "bool",
+                  "value": 1,
+                  "description": "Indicates if the voice control action was set successfully."
+                }
+              ]
+            }
+          },
+          {
+            "name": "GetRearViewMirrorFoldedUnfold",
+            "request": {
+              "name": "GetRearViewMirrorFoldedUnfoldRequest",
+              "parameter": []
+            },
+            "response": {
+              "name": "GetRearViewMirrorFoldedUnfoldResponse",
+              "parameter": [
+                {
+                  "name": "foldstatus",
+                  "type": "int32",
+                  "value": 1,
+                  "description": "Current status of rear view mirror fold."
+                }
+              ]
+            }
+          },
+          {
+            "name": "GetFldigExtrrMrorsExpand",
+            "request": {
+              "name": "GetFldigExtrrMrorsExpandRequest",
+              "parameter": []
+            },
+            "response": {
+              "name": "GetFldigExtrrMrorsExpandResponse",
+              "parameter": [
+                {
+                  "name": "expandstatus",
+                  "type": "int32",
+                  "value": 1,
+                  "description": "Current status of rear view mirror expand."
+                }
+              ]
+            }
+          },
+          {
+            "name": "GetSpeed",
+            "request": {
+              "name": "GetSpeedRequest",
+              "parameter": []
+            },
+            "response": {
+              "name": "GetSpeedResponse",
+              "parameter": [
+                {
+                  "name": "speed",
+                  "type": "double",
+                  "value": 1,
+                  "description": "Current speed of vehicle."
+                }
+              ]
+            }
+          },
+          {
+            "name": "SetRightSideSlowChargingPADSwitchSignalS",
+            "request": {
+              "name": "SetRightSideSlowChargingPADSwitchSignalSRequest",
+              "parameter": [
+                {
+                  "name": "signal",
+                  "type": "int32",
+                  "value": 1,
+                  "description": "Desired Right Side Slow Charging PAD Switch Signal."
+                }
+              ]
+            },
+            "response": {
+              "name": "SetRightSideSlowChargingPADSwitchSignalSResponse",
+              "parameter": [
+                {
+                  "name": "success",
+                  "type": "bool",
+                  "value": 1,
+                  "description": "Indicates if the Switch Signal was set successfully."
+                }
+              ]
+            }
+          },
+          {
+            "name": "SetPADSwitchSignalOfTheLeftCharging",
+            "request": {
+              "name": "SetPADSwitchSignalOfTheLeftChargingRequest",
+              "parameter": [
+                {
+                  "name": "signal",
+                  "type": "int32",
+                  "value": 1,
+                  "description": "Desired left Side Charging PAD Switch Signal."
+                }
+              ]
+            },
+            "response": {
+              "name": "SetPADSwitchSignalOfTheLeftChargingResponse",
+              "parameter": [
+                {
+                  "name": "success",
+                  "type": "bool",
+                  "value": 1,
+                  "description": "Indicates if the Switch Signal was set successfully."
+                }
+              ]
+            }
+          },
+          {
+            "name": "GetChargingRightElectricFlapState",
+            "request": {
+              "name": "GetChargingRightElectricFlapStateRequest",
+              "parameter": []
+            },
+            "response": {
+              "name": "GetChargingRightElectricFlapStateResponse",
+              "parameter": [
+                {
+                  "name": "state",
+                  "type": "int32",
+                  "value": 1,
+                  "description": "Current state of Charging Right Electric Flap."
+                }
+              ]
+            }
+          },
+          {
+            "name": "GetSunShadePosPerc41A",
+            "request": {
+              "name": "GetSunShadePosPerc41ARequest",
+              "parameter": []
+            },
+            "response": {
+              "name": "GetSunShadePosPerc41AResponse",
+              "parameter": [
+                {
+                  "name": "percentage",
+                  "type": "int32",
+                  "value": 1,
+                  "description": "Current percentage of sun shade position."
+                }
+              ]
+            }
+          },
+          {
+            "name": "GetSunsdCurrentActStats",
+            "request": {
+              "name": "GetSunsdCurrentActStatsRequest",
+              "parameter": []
+            },
+            "response": {
+              "name": "GetSunsdCurrentActStatsResponse",
+              "parameter": [
+                {
+                  "name": "action",
+                  "type": "int32",
+                  "value": 1,
+                  "description": "sun shade current action status."
+                }
+              ]
+            }
+          },
+          {
+            "name": "GetSunshadePositionFeed",
+            "request": {
+              "name": "GetSunshadePositionFeedRequest",
+              "parameter": []
+            },
+            "response": {
+              "name": "GetSunshadePositionFeedResponse",
+              "parameter": [
+                {
+                  "name": "positionfeed",
+                  "type": "int32",
+                  "value": 1,
+                  "description": "Current feed of sun shade position."
+                }
+              ]
+            }
+          },
+          {
+            "name": "GetFrontShadeThermalProtectionStat",
+            "request": {
+              "name": "GetFrontShadeThermalProtectionStatRequest",
+              "parameter": []
+            },
+            "response": {
+              "name": "GetFrontShadeThermalProtectionStatResponse",
+              "parameter": [
+                {
+                  "name": "tpstat",
+                  "type": "int32",
+                  "value": 1,
+                  "description": "Current Thermal Protection Stat of sun shade."
+                }
+              ]
+            }
+          },
+          {
+            "name": "GetSunshadeIsNotInitializ",
+            "request": {
+              "name": "GetSunshadeIsNotInitializRequest",
+              "parameter": []
+            },
+            "response": {
+              "name": "GetSunshadeIsNotInitializResponse",
+              "parameter": [
+                {
+                  "name": "initstatus",
+                  "type": "int32",
+                  "value": 1,
+                  "description": "Current init status of sun shade."
+                }
+              ]
+            }
+          },
+          {
+            "name": "SetShadeVoiCtrlInstrct",
+            "request": {
+              "name": "SetShadeVoiCtrlInstrctRequest",
+              "parameter": [
+                {
+                  "name": "mode",
+                  "type": "int32",
+                  "value": 1,
+                  "description": "Desired switch mode."
+                }
+              ]
+            },
+            "response": {
+              "name": "SetShadeVoiCtrlInstrctResponse",
+              "parameter": [
+                {
+                  "name": "success",
+                  "type": "bool",
+                  "value": 1,
+                  "description": "Indicates if the sunshade mode was set successfully."
+                }
+              ]
+            }
+          },
+          {
+            "name": "SetSunShadePosPerc4F5",
+            "request": {
+              "name": "SetSunShadePosPerc4F5Request",
+              "parameter": [
+                {
+                  "name": "percentage",
+                  "type": "int32",
+                  "value": 1,
+                  "description": "Desired sunshade open percentage."
+                }
+              ]
+            },
+            "response": {
+              "name": "SetSunShadePosPerc4F5Response",
+              "parameter": [
+                {
+                  "name": "success",
+                  "type": "bool",
+                  "value": 1,
+                  "description": "Indicates if the sunshade open percentage was set successfully."
+                }
+              ]
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

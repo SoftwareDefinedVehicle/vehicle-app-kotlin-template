@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+package com.etas.e2e.tools.client;
+
+option java_outer_classname = "VehicleServiceTwoOuterClass";
+
+service VehicleServiceTwo {
+  rpc SetSeatPositionTwo (SetSeatPositionTwoRequest) returns (SetSeatPositionTwoResponse);
+}
+
+message SetSeatPositionTwoRequest {
+  int32 position = 1;
+  string status = 2;
+}
+
+message SetSeatPositionTwoResponse {
+  bool success = 1;
+}

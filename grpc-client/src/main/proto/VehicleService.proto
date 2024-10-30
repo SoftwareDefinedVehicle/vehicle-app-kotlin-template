@@ -1,0 +1,135 @@
+syntax = "proto3";
+
+package com.etas.e2e.tools.client;
+
+option java_outer_classname = "VehicleServiceOuterClass";
+
+message SetVoiceCtrlExtMirrorFold4C1Request {
+  int32 action = 1; // Desired rear view mirror voice control action.
+}
+
+message SetVoiceCtrlExtMirrorFold4C1Response {
+  bool success = 1; // Indicates if the voice control action was set successfully.
+}
+
+message GetRearViewMirrorFoldedUnfoldRequest {
+}
+
+message GetRearViewMirrorFoldedUnfoldResponse {
+  int32 foldstatus = 1; // Current status of rear view mirror fold.
+}
+
+message GetFldigExtrrMrorsExpandRequest {
+}
+
+message GetFldigExtrrMrorsExpandResponse {
+  int32 expandstatus = 1; // Current status of rear view mirror expand.
+}
+
+message GetSpeedRequest {
+}
+
+message GetSpeedResponse {
+  double speed = 1; // Current speed of vehicle.
+}
+
+message SetRightSideSlowChargingPADSwitchSignalSRequest {
+  int32 signal = 1; // Desired Right Side Slow Charging PAD Switch Signal.
+}
+
+message SetRightSideSlowChargingPADSwitchSignalSResponse {
+  bool success = 1; // Indicates if the Switch Signal was set successfully.
+}
+
+message SetPADSwitchSignalOfTheLeftChargingRequest {
+  int32 signal = 1; // Desired left Side Charging PAD Switch Signal.
+}
+
+message SetPADSwitchSignalOfTheLeftChargingResponse {
+  bool success = 1; // Indicates if the Switch Signal was set successfully.
+}
+
+message GetChargingRightElectricFlapStateRequest {
+}
+
+message GetChargingRightElectricFlapStateResponse {
+  int32 state = 1; // Current state of Charging Right Electric Flap.
+}
+
+message GetSunShadePosPerc41ARequest {
+}
+
+message GetSunShadePosPerc41AResponse {
+  int32 percentage = 1; // Current percentage of sun shade position.
+}
+
+message GetSunsdCurrentActStatsRequest {
+}
+
+message GetSunsdCurrentActStatsResponse {
+  int32 action = 1; // sun shade current action status.
+}
+
+message GetSunshadePositionFeedRequest {
+}
+
+message GetSunshadePositionFeedResponse {
+  int32 positionfeed = 1; // Current feed of sun shade position.
+}
+
+message GetFrontShadeThermalProtectionStatRequest {
+}
+
+message GetFrontShadeThermalProtectionStatResponse {
+  int32 tpstat = 1; // Current Thermal Protection Stat of sun shade.
+}
+
+message GetSunshadeIsNotInitializRequest {
+}
+
+message GetSunshadeIsNotInitializResponse {
+  int32 initstatus = 1; // Current init status of sun shade.
+}
+
+message SetShadeVoiCtrlInstrctRequest {
+  int32 mode = 1; // Desired switch mode.
+}
+
+message SetShadeVoiCtrlInstrctResponse {
+  bool success = 1; // Indicates if the sunshade mode was set successfully.
+}
+
+message SetSunShadePosPerc4F5Request {
+  int32 percentage = 1; // Desired sunshade open percentage.
+}
+
+message SetSunShadePosPerc4F5Response {
+  bool success = 1; // Indicates if the sunshade open percentage was set successfully.
+}
+
+service VehicleService {
+  rpc SetVoiceCtrlExtMirrorFold4C1 (SetVoiceCtrlExtMirrorFold4C1Request) returns (SetVoiceCtrlExtMirrorFold4C1Response);
+  rpc GetRearViewMirrorFoldedUnfold (GetRearViewMirrorFoldedUnfoldRequest) returns (GetRearViewMirrorFoldedUnfoldResponse);
+  rpc GetFldigExtrrMrorsExpand (GetFldigExtrrMrorsExpandRequest) returns (GetFldigExtrrMrorsExpandResponse);
+  rpc GetSpeed (GetSpeedRequest) returns (GetSpeedResponse);
+  rpc SetRightSideSlowChargingPADSwitchSignalS (SetRightSideSlowChargingPADSwitchSignalSRequest) returns (SetRightSideSlowChargingPADSwitchSignalSResponse);
+  rpc SetPADSwitchSignalOfTheLeftCharging (SetPADSwitchSignalOfTheLeftChargingRequest) returns (SetPADSwitchSignalOfTheLeftChargingResponse);
+  rpc GetChargingRightElectricFlapState (GetChargingRightElectricFlapStateRequest) returns (GetChargingRightElectricFlapStateResponse);
+  rpc GetSunShadePosPerc41A (GetSunShadePosPerc41ARequest) returns (GetSunShadePosPerc41AResponse);
+  rpc GetSunsdCurrentActStats (GetSunsdCurrentActStatsRequest) returns (GetSunsdCurrentActStatsResponse);
+  rpc GetSunshadePositionFeed (GetSunshadePositionFeedRequest) returns (GetSunshadePositionFeedResponse);
+  rpc GetFrontShadeThermalProtectionStat (GetFrontShadeThermalProtectionStatRequest) returns (GetFrontShadeThermalProtectionStatResponse);
+  rpc GetSunshadeIsNotInitializ (GetSunshadeIsNotInitializRequest) returns (GetSunshadeIsNotInitializResponse);
+  rpc SetShadeVoiCtrlInstrct (SetShadeVoiCtrlInstrctRequest) returns (SetShadeVoiCtrlInstrctResponse);
+  rpc SetSunShadePosPerc4F5 (SetSunShadePosPerc4F5Request) returns (SetSunShadePosPerc4F5Response);
+  rpc SetSeatPosition (SetSeatPositionRequest) returns (SetSeatPositionResponse);
+}
+
+message SetSeatPositionRequest {
+  int32 position = 1;
+  string status = 2;
+}
+
+message SetSeatPositionResponse {
+  bool success = 1;
+}

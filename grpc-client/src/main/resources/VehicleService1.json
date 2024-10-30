@@ -1,0 +1,103 @@
+{
+  "ServiceDsl": {
+    "services": [
+      {
+        "name": "DoorService",
+        "rpcs": [
+          {
+            "name": "OpenDoor",
+            "request": {
+              "name": "OpenDoorRequest",
+              "parameter": [
+                {
+                  "name": "Speed",
+                  "type": "float",
+                  "value": -1,
+                  "description": ""
+                }
+              ]
+            },
+            "response": {
+              "name": "OpenDoorResponse",
+              "parameter": [
+                {
+                  "name": "duration",
+                  "type": "int64",
+                  "value": -1,
+                  "description": ""
+                }
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "SeatMassageService",
+        "rpcs": [
+          {
+            "name": "GetSeatHeatingConfig",
+            "request": {
+              "name": "GetSeatHeatingConfigRequest",
+              "parameter": [
+                {
+                  "name": "seatIndex",
+                  "type": "int32",
+                  "value": -1,
+                  "description": ""
+                }
+              ]
+            },
+            "response": {
+              "name": "GetSeatHeatingConfigResponse",
+              "parameter": [
+                {
+                  "name": "config",
+                  "type": "MassageConfig",
+                  "value": -1,
+                  "description": ""
+                }
+              ]
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "VehicleSdk": {
+    "host": {
+      "auth": null,
+      "hostname": "",
+      "port": 55555,
+      "tls": false
+    },
+    "name": "ServiceClient1",
+    "apis": [
+      {
+        "name": "getSeatHeatingConfig",
+        "parameter": [
+          {
+            "name": "seatIdx",
+            "description": "ok",
+            "type": "int32",
+            "value": -1
+          }
+        ],
+        "response": {
+          "return": null,
+          "type": "void"
+        },
+        "flow": [
+          {
+            "service": "SeatMassageService",
+            "rpc": "GetSeatHeatingConfig",
+            "parameter": [
+              "input.seatIndex=seatIdx"
+            ],
+            "responsemap": "GetSeatHeatingConfigResponse"
+          }
+        ]
+      }
+    ],
+    "package": "com.etas.e2e.tools.client"
+  }
+}

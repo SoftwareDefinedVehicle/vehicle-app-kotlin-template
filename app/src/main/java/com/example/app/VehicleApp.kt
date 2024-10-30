@@ -16,6 +16,7 @@
 
 package com.example.app
 
+import com.etas.e2e.tools.client.ServiceClient1
 import com.example.logger.LogcatLoggingStrategy
 import org.eclipse.velocitas.sdk.VehicleApplication
 import org.eclipse.velocitas.sdk.logging.Logger
@@ -25,11 +26,13 @@ class VehicleApp : VehicleApplication() {
         Logger.loggingStrategy = LogcatLoggingStrategy
     }
 
+    val serviceClient = ServiceClient1("10.0.2.2", 12345)
+
     override fun onStart() {
-        // unused
+        serviceClient.connect()
     }
 
     override fun onStop() {
-        // unused
+        serviceClient.shutdown()
     }
 }

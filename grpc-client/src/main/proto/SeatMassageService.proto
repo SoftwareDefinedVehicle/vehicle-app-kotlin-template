@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+package com.etas.e2e.tools.client;
+
+option java_outer_classname = "SeatMassageServiceOuterClass";
+
+message GetSeatHeatingConfigRequest {
+  int32 seatIndex = 1;
+}
+
+message GetSeatHeatingConfigResponse {
+  MassageConfig config = 1;
+}
+
+message MassageConfig {
+}
+
+service SeatMassageService {
+  rpc GetSeatHeatingConfig(GetSeatHeatingConfigRequest) returns (GetSeatHeatingConfigResponse);
+}
