@@ -15,7 +15,7 @@ public class {{ sdk_info.name }} {
 
     private final ManagedChannel channel;
     {% for service in services -%}
-    private final {{ service.name }}BlockingStub Byd{{ service.name }};
+    private final {{ service.name }}BlockingStub {{ service.name|lower_first }};
     {% endfor %}
 
     // Constructor using the default hostname and port from the JSON
@@ -26,7 +26,7 @@ public class {{ sdk_info.name }} {
     public {{ sdk_info.name }}(String host, int port) {
         this.channel = ManagedChannelBuilder.forAddress(host, port).usePlaintext().build();
         {% for service in services -%}
-        this.Byd{{ service.name }} = {{ service.name }}Grpc.newBlockingStub(channel);
+        this.{{ service.name|lower_first }} = {{ service.name }}Grpc.newBlockingStub(channel);
         {% endfor %}
     }
 
@@ -49,7 +49,7 @@ public class {{ sdk_info.name }} {
             .set{{ param.param_name|upper_first }}({{ param.param_mapped }})
             {% endfor -%}
             .build();
-        {{ step.rpc }}Response {{ step.response_var }} = Byd{{ step.service }}.{{ step.rpc|lower_first }}({{ step.request_var }});
+        {{ step.rpc }}Response {{ step.response_var }} = {{ step.service|lower_first }}.{{ step.rpc|lower_first }}({{ step.request_var }});
         {% endfor -%}
         
         {% if api.response.type != 'void' -%}

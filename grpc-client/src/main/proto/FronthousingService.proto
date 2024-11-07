@@ -1,0 +1,45 @@
+syntax = "proto3";
+package com.etas.e2e.tools.client;
+
+service FronthousingService {
+  rpc GetAirConditioningStatus(GetAirConditioningStatusRequest) returns (GetAirConditioningStatusResponse);
+  rpc SwitchOffAirConditioning(SwitchOffAirConditioningRequest) returns (SwitchOffAirConditioningResponse);
+  rpc IsFrontDefrostRunning(IsFrontDefrostRunningRequest) returns (IsFrontDefrostRunningResponse);
+  rpc StartFrontDefrost(StartFrontDefrostRequest) returns (StartFrontDefrostResponse);
+  rpc GetCycleMode(GetCycleModeRequest) returns (GetCycleModeResponse);
+  rpc SetCircularKey(SetCircularKeyRequest) returns (SetCircularKeyResponse);
+}
+
+message GetAirConditioningStatusRequest {}
+message GetAirConditioningStatusResponse {
+  enum AirConditioningStatus {
+    STATUS_INVALID = 0;
+    STATUS_TURN_ON = 1;
+    STATUS_TURN_OFF = 2;
+    STATUS_RESERVED = 3;
+  }
+  uint32 status = 1;
+}
+
+message SwitchOffAirConditioningRequest {
+  enum SwitchAirConditioning {
+    SWITCH_INVALID = 0;
+    SWITCH_TURN_ON = 1;
+    SWITCH_TURN_OFF = 2;
+    SWITCH_RESERVED = 3;
+  }
+  uint32 acswitch = 1;
+}
+message SwitchOffAirConditioningResponse {}
+
+message IsFrontDefrostRunningRequest {}
+message IsFrontDefrostRunningResponse {}
+
+message StartFrontDefrostRequest {}
+message StartFrontDefrostResponse {}
+
+message GetCycleModeRequest {}
+message GetCycleModeResponse {}
+
+message SetCircularKeyRequest {}
+message SetCircularKeyResponse {}

@@ -1,0 +1,57 @@
+syntax = "proto3";
+package com.etas.e2e.tools.client;
+
+service FoldingService {
+
+  /*
+   * 0x4C10A028
+   * VoiceCtrlExtMirrorFold4C1
+   * CAN Frame ID (hex): 4C1
+   * CAN Channel: 0
+   * CAN Sub Id: 0a
+   * Start Bit: 5.0
+   * Stop Bit: 5.1
+   * Datatype: CHAR
+   * Direction: Down (Actuator)
+   * Interface Class: REAR_VIEWMIRROR
+   * Function Group: Body
+   * Function: Voice-controlled exterior mirror fold
+   * Feature ID Parameter: SET_OUTSIDE_REARVIEW_MIRROR_FOLD_SET
+   * Comments: "Name: Voice-controlled exterior mirror fold
+   * Message Definition:
+   * 0x0: Invalid
+   * 0x1: Folding
+   * 0x2: Expand
+   * 0x3: Reserved
+   */
+  rpc FoldMirrors(FoldMirrorsRequest) returns (FoldMirrorsResponse);
+
+  rpc UnfoldMirrors(UnfoldMirrorsRequest) returns (UnfoldMirrorsResponse);
+
+  /*
+   * 0x3C50002F	RearViewMirrorFoldedUnfold	3C5	0	00	5,7	6.0	CHAR	Line up 	REAR_VIEWMIRROR	Body 	Status of the exterior mirror fold out 	REAR_VIEW_MIRROR_STATE	"Name: The status of the exterior mirror fold-out
+   * Message Definition:
+   * 0x0: Not active
+   * 0x1: Fold status
+   * 0x2: Expand state
+   * 0x3: Reserved "
+   */
+  rpc GetMirrorFoldStatus(GetMirrorFoldStatusRequest) returns (GetMirrorFoldStatusResponse);
+}
+
+message FoldMirrorsRequest{}
+message FoldMirrorsResponse{}
+
+message UnfoldMirrorsRequest{}
+message UnfoldMirrorsResponse{}
+
+message GetMirrorFoldStatusRequest{}
+message GetMirrorFoldStatusResponse{
+  enum GetMirrorFoldStatus {
+    STATUS_INVALID = 0;
+    STATUS_FOLDED = 1;
+    STATUS_EXPANDED = 2;
+    STATUS_RESERVED = 3;
+  }
+  uint32 status = 1;
+}

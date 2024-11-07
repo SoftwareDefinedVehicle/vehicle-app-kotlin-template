@@ -56,14 +56,13 @@ dependencies {
     implementation(project(":sdk"))
     implementation(project(":grpc-client"))
 
-    implementation(libs.grpc.stub)
-
     implementation(libs.androidx.fragment.ktx)
 
     implementation(libs.androidx.car.app)
     implementation(libs.androidx.car.app.automotive)
     testImplementation(libs.androidx.car.app.testing)
     testImplementation(libs.junit)
+
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
 }

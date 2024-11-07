@@ -115,7 +115,7 @@ tasks.register("distFatJar") {
 
 dependencies {
     implementation(libs.grpc.netty.shaded)
-    implementation(libs.grpc.protobuf.lite)
-    implementation(libs.grpc.stub)
+    api(libs.grpc.protobuf.lite)
+    api(libs.grpc.stub)
     implementation(libs.javax.annotation.api)
 }
