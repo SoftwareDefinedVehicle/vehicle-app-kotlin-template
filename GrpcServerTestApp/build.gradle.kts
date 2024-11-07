@@ -14,29 +14,17 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-pluginManagement {
-    repositories {
-        google {
-            content {
-                includeGroupByRegex("com\\.android.*")
-                includeGroupByRegex("com\\.google.*")
-                includeGroupByRegex("androidx.*")
-            }
-        }
-        mavenCentral()
-        gradlePluginPortal()
-    }
-}
-dependencyResolutionManagement {
-    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
-    repositories {
-        google()
-        mavenCentral()
-    }
+plugins {
+    id("application")
+    alias(libs.plugins.kotlin.jvm)
 }
 
-rootProject.name = "vehicle-app-kotlin-template"
-include(":sdk")
-include(":app")
-include(":grpc-client")
-include(":GrpcServerTestApp")
+java {
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
+}
+
+dependencies {
+    implementation(project(":sdk"))
+    implementation(project(":grpc-client"))
+}
