@@ -16,17 +16,13 @@
 
 package com.example.grpcservertestapp
 
-import io.grpc.Grpc
-import io.grpc.InsecureChannelCredentials
 import io.grpc.ServerBuilder
-import org.eclipse.velocitas.sdk.grpc.BrokerGrpcFacade
+import org.eclipse.velocitas.sdk.grpc.AsyncBrokerGrpcFacade
 
 fun main(args: Array<String>) {
     val host = "localhost"
     val port = 55556
-    val credentials = InsecureChannelCredentials.create()
-    val channel = Grpc.newChannelBuilderForAddress(host, port, credentials).build()
-    val brokerGrpcFacade = BrokerGrpcFacade(channel)
+    val brokerGrpcFacade = AsyncBrokerGrpcFacade(host, port)
 
     val foldingServiceImpl = FoldingServiceImpl(brokerGrpcFacade)
     val fronthousingServiceImpl = FronthousingServiceImpl(brokerGrpcFacade)

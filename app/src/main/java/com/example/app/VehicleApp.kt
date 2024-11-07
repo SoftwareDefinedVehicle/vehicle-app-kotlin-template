@@ -16,8 +16,15 @@
 
 package com.example.app
 
+import com.etas.e2e.tools.client.FoldingServiceGrpc
+import com.etas.e2e.tools.client.FoldingServiceOuterClass.FoldMirrorsRequest
+import com.etas.e2e.tools.client.FoldingServiceOuterClass.GetMirrorFoldStatusRequest
+import com.etas.e2e.tools.client.FoldingServiceOuterClass.GetMirrorFoldStatusResponse.GetMirrorFoldStatus
+import com.etas.e2e.tools.client.FoldingServiceOuterClass.UnfoldMirrorsRequest
 import com.etas.e2e.tools.client.ServiceClient1
 import com.example.logger.LogcatLoggingStrategy
+import io.grpc.Grpc
+import io.grpc.InsecureChannelCredentials
 import org.eclipse.velocitas.sdk.VehicleApplication
 import org.eclipse.velocitas.sdk.logging.Logger
 
@@ -28,11 +35,36 @@ class VehicleApp : VehicleApplication() {
 
     val serviceClient = ServiceClient1("10.0.2.2", 12345)
 
+    // replace with generated client
+    val serviceChannel = Grpc.newChannelBuilderForAddress(
+        "10.0.2.2",
+        12345,
+        InsecureChannelCredentials.create()
+    ).build()
+    val foldingService = FoldingServiceGrpc.newFutureStub(serviceChannel)
+
     override fun onStart() {
         serviceClient.connect()
     }
 
     override fun onStop() {
         serviceClient.shutdown()
+    }
+
+    // TODO replace with generated client
+    fun foldMirrors() {
+        val request = FoldMirrorsRequest.getDefaultInstance()
+        val response = foldingService.foldMirrors(request).get()
+    }
+
+    fun unfoldMirrors() {
+        val request = UnfoldMirrorsRequest.getDefaultInstance()
+        val response = foldingService.unfoldMirrors(request).get()
+    }
+
+    fun getMirrorFoldStatus(): GetMirrorFoldStatus {
+        val request = GetMirrorFoldStatusRequest.getDefaultInstance()
+        val response = foldingService.getMirrorFoldStatus(request).get()
+        return GetMirrorFoldStatus.forNumber(response.status)
     }
 }

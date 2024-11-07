@@ -33,7 +33,7 @@ class VehicleAppService : CarAppService() {
     }
 
     override fun onCreateSession(): Session {
-        return VehicleAppSession()
+        return VehicleAppSession(vehicleApp)
     }
 
     override fun onCreate() {
